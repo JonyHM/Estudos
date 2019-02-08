@@ -5,7 +5,7 @@
  - Mais utilizado são GET, POST, DELETE, PUT.
 
 **Versionamento**
- - GIT
+  - GIT
   - Controle de versão distribuído
   - Criado por Linus Torvalds para gerenciamento do código do kernel do Linux.
   - Ferramente adotada pela GSW - Bitbucket
