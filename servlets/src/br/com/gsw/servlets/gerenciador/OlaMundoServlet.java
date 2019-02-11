@@ -9,15 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns="/ola")
-public class HelloWorldServlet extends HttpServlet{
+public class OlaMundoServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		
 		PrintWriter out = resp.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println("	Outro teste, dessa vez com java, escrevendo Html");
+		out.println("	Outro teste, dessa vez com java escrevendo Html");
 		out.println("</body>");
 		out.println("</html>");
 	}
