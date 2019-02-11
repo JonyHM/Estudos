@@ -3,12 +3,13 @@
  - Modelo de software distribuído baseado em comunicaçao via rede.
  - Utiliza o protocolo HTTP e seus métodos para comunicar com um servidor.
  - Mais utilizado são GET, POST, DELETE, PUT.
+ - JSON
 
 **Versionamento**
  - GIT
   - Controle de versão distribuído
   - Criado por Linus Torvalds para gerenciamento do código do kernel do Linux.
-  - Ferramente adotada pela GSW - Bitbucket
+  - Ferramenta adotada pela GSW - Bitbucket
   - Principais comandos: git clone, git pull, git push, git add, git commit.
 
 **Gerenciamento de depedências Java**
