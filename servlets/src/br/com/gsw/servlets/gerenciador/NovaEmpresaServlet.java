@@ -1,8 +1,11 @@
 package br.com.gsw.servlets.gerenciador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,22 +20,37 @@ public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * Faz apenas a requisição POST ser aceito pela página
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Confirma a chamada do Servlet
 		System.out.println("Novo cadastro de Empresa");
-						
+		
+		//Cria uma variavel do tipo String para receber o nome da empresa inserido e o designa a um atributo de um novo objeto
 		String nomeEmpresa = request.getParameter("nome");
+		String paramDataEmpresa = request.getParameter("data");
+				
+		//realizando parsing para formatar a data recebida como string (catch and rethrow)
+		Date dataAbertura = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			dataAbertura = sdf.parse(paramDataEmpresa);
+		} catch (ParseException e) {
+			throw new ServletException(e);
+		}
+		
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
+		empresa.setDataAbertura(dataAbertura);
 		
+		//cria um novo banco de dados e envia o nome da empresa nele
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		PrintWriter saida = response.getWriter();
-		saida.println("<html><body>Cadastro da empresa " + nomeEmpresa + " realizado com sucesso!</body></html>");
-			
-		
+		//Chamar o JSP para exibir o arquivo criado
+		RequestDispatcher rd = request.getRequestDispatcher("/cadastroRealizado.jsp");
+		request.setAttribute("empresa", empresa.getNome());
+		rd.forward(request, response);
 	}
 
 }
