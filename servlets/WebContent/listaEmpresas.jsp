@@ -19,8 +19,8 @@
 							
 				<li>
 					${e.nome} - <fmt:formatDate value="${e.dataAbertura}" pattern="dd/MM/yyyy"/>
-					<a href="/servlets/removerEmpresas?id=${e.id}">Remover</a>
-					<a href="/servlets/alterarEmpresas?id=${e.id}">Alterar</a>
+					<a href="/servlets/mostraEmpresas?id=${e.id}">Editar</a>
+					<a href="/servlets/removeEmpresas?id=${e.id}">Remover</a>
 				</li>
 			</c:forEach>
 		</ul>

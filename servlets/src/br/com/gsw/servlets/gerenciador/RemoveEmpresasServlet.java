@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/removerEmpresas")
-public class RemoverEmpresasServlet extends HttpServlet {
+@WebServlet("/removeEmpresas")
+public class RemoveEmpresasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class RemoverEmpresasServlet extends HttpServlet {
 		Integer id = Integer.valueOf(paramId);		
 		System.out.println(id);
 		
-		Banco banco = new Banco();
+		Banco banco = new Banco(); //Query BD
 		banco.removerEmpresa(id);
 		
 		response.sendRedirect("listaEmpresas");
