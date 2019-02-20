@@ -5,10 +5,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Formulario Teste</title>
+		<title>Novo Cadastro de Empresa</title>
 	</head>
 	<body>
-	
+		
+		<c:import url="logout-parcial.jsp"/>
+		
 		<form action="${linkServlet}" method="post">
 			
 			Nome: <input type="text" name="nome"/>

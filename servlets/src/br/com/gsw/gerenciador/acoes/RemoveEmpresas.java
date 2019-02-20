@@ -8,19 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.gsw.gerenciador.modelo.Banco;
 
-public class RemoveEmpresas {
+public class RemoveEmpresas implements Acao{
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Removendo...");
 		String paramId = request.getParameter("id");
 		
 		Integer id = Integer.valueOf(paramId);		
-		System.out.println(id);
 		
 		Banco banco = new Banco(); //Query BD
 		banco.removerEmpresa(id);
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:ListaEmpresas";
 	}
 }

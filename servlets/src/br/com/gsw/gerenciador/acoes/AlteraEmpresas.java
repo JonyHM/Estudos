@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.gsw.gerenciador.modelo.Banco;
 import br.com.gsw.gerenciador.modelo.Empresa;
 
-public class AlteraEmpresas {
+public class AlteraEmpresas implements Acao{
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 					
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
@@ -29,13 +29,11 @@ public class AlteraEmpresas {
 			throw new ServletException(e);
 		}
 		
-		System.out.println("Alterando Empresa..." + id);
-		
 		Banco banco = new Banco();
 		Empresa empresa = banco.buscaEmpresaPeloId(id); //Query BD
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
-		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+				
+		return "redirect:ListaEmpresas";
 	}
 }

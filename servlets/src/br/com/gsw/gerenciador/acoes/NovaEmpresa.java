@@ -12,11 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.gsw.gerenciador.modelo.Banco;
 import br.com.gsw.gerenciador.modelo.Empresa;
 
-public class NovaEmpresa {
+public class NovaEmpresa implements Acao{
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-System.out.println("Novo cadastro de Empresa");
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		//Cria uma variavel do tipo String para receber o nome da empresa inserido e o designa a um atributo de um novo objeto
 		String nomeEmpresa = request.getParameter("nome");
@@ -41,6 +39,7 @@ System.out.println("Novo cadastro de Empresa");
 		
 		//envia para o jsp o nome da empresa através do atributo empresa 
 		request.setAttribute("empresa", empresa.getNome());
-		response.sendRedirect("entrada?acao=ListaEmpresas"); //redireciona para outro servlet
+		
+		return "redirect:ListaEmpresas";
 	}
 }

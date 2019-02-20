@@ -1,0 +1,1 @@
+<br /><a href="entrada?acao=LoginForm">logout</a><br />

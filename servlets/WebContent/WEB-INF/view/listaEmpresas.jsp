@@ -8,7 +8,12 @@
 		<title>Lista de Empresas</title>
 	</head>
 	<body>
-	
+		
+		Bem vindo ${usuarioLogado.login }
+		<br>
+				
+		<c:import url="logout-parcial.jsp"/>
+		
 		<c:if test="${not empty empresa}">
 			Cadastro da empresa ${ empresa } realizado com sucesso!
 		</c:if>
