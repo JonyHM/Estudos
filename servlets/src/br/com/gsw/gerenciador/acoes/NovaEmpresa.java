@@ -1,4 +1,4 @@
-package br.com.gsw.servlets.gerenciador;
+package br.com.gsw.gerenciador.acoes;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,24 +6,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NewCompanyServlet
- */
-@WebServlet("/novaEmpresa")
-public class NovaEmpresaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import br.com.gsw.gerenciador.modelo.Banco;
+import br.com.gsw.gerenciador.modelo.Empresa;
 
-	/**
-	 * Faz apenas a requisição POST ser aceito pela página
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Confirma a chamada do Servlet
-		System.out.println("Novo cadastro de Empresa");
+public class NovaEmpresa {
+
+	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+System.out.println("Novo cadastro de Empresa");
 		
 		//Cria uma variavel do tipo String para receber o nome da empresa inserido e o designa a um atributo de um novo objeto
 		String nomeEmpresa = request.getParameter("nome");
@@ -48,12 +41,6 @@ public class NovaEmpresaServlet extends HttpServlet {
 		
 		//envia para o jsp o nome da empresa através do atributo empresa 
 		request.setAttribute("empresa", empresa.getNome());
-		response.sendRedirect("listaEmpresas"); //redireciona para outro servlet
-		
-//		//Chamar o JSP para exibir o arquivo criado
-//		RequestDispatcher rd = request.getRequestDispatcher("/cadastroRealizado.jsp");
-//		request.setAttribute("empresa", empresa.getNome());
-//		rd.forward(request, response);
+		response.sendRedirect("entrada?acao=ListaEmpresas"); //redireciona para outro servlet
 	}
-
 }

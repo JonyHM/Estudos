@@ -1,4 +1,4 @@
-package br.com.gsw.servlets.gerenciador;
+package br.com.gsw.gerenciador.servlets;
 
 import java.io.IOException;
 
