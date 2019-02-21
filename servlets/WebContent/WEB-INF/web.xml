@@ -4,12 +4,28 @@
   <welcome-file-list>
     <welcome-file>bemVindo.html</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>FundamentosWeb</servlet-name>
-    <servlet-class>br.com.gsw.gerenciador.OlaMundoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FundamentosWeb</servlet-name>
-    <url-pattern>/oi</url-pattern>
-  </servlet-mapping>
+  <filter>
+    <filter-name>MF</filter-name>
+    <filter-class>br.com.gsw.gerenciador.servlets.MonitoramentoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MF</filter-name>
+    <url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>AF</filter-name>
+    <filter-class>br.com.gsw.gerenciador.servlets.AutorizacaoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AF</filter-name>
+    <url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>CF</filter-name>
+    <filter-class>br.com.gsw.gerenciador.servlets.ControladorFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CF</filter-name>
+    <url-pattern>/entrada</url-pattern>
+  </filter-mapping>
 </web-app>
