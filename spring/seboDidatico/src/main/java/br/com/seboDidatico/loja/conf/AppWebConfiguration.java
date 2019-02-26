@@ -6,9 +6,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.seboDidatico.loja.controllers.PrincipalController;
+import br.com.seboDidatico.loja.daos.ProdutoDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {PrincipalController.class})
+@ComponentScan(basePackageClasses = {PrincipalController.class, ProdutoDAO.class})
 public class AppWebConfiguration {
 	
 	@Bean
