@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Compra e venda de livros usados e novos, jogos e diversos
-	itens - Sebo Didático</title>
+<title>Compra e venda de livros usados e novos, jogos e diversos itens - Sebo Didático</title>
 </head>
 <body>
 	<h1>Sebo Didático</h1>
