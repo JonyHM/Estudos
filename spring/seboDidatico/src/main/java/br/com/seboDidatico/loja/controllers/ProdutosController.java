@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -33,14 +34,12 @@ public class ProdutosController {
 	private FileSaver fileSaver;
 	
 	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		
+	public void initBinder(WebDataBinder binder) {		
 		binder.addValidators(new ProdutoValidation());
 	}
 	
 	@RequestMapping("form")
-	public ModelAndView form(Produto produto) {
-		
+	public ModelAndView form(Produto produto) {		
 		ModelAndView modelAndView = new ModelAndView("/produtos/form");
 		modelAndView.addObject("tipos", TipoPreco.values());
 		
@@ -48,8 +47,8 @@ public class ProdutosController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirect) {
-		
+	@CacheEvict(value="produtosHome", allEntries=true)
+	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirect) {		
 		if(result.hasErrors()) {
 			return form(produto);
 		}
@@ -64,8 +63,7 @@ public class ProdutosController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView listar() {
-		
+	public ModelAndView listar() {		
 		List<Produto> produtos = produtoDAO.listar();
 		ModelAndView modelAndView = new ModelAndView("/produtos/lista");
 		modelAndView.addObject("produtos", produtos);
@@ -74,8 +72,7 @@ public class ProdutosController {
 	}
 	
 	@RequestMapping("/detalhe/{id}")
-	public ModelAndView detalhe(@PathVariable("id") Integer id) {
-		
+	public ModelAndView detalhe(@PathVariable("id") Integer id) {		
 		ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
 		Produto produto = produtoDAO.find(id);
 		modelAndView.addObject("produto", produto);
