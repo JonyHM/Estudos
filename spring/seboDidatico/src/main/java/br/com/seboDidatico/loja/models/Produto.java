@@ -1,6 +1,8 @@
 package br.com.seboDidatico.loja.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,30 +11,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Produto {
-
-	private String sumarioPath;
-
-	@DateTimeFormat
-	private Calendar dataLancamento;
+public class Produto implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ElementCollection
-	private List<Preco> precos;
-
 	private String titulo;
-
-	@Lob
 	private String descricao;
 	private int paginas;
+	
+	private String sumarioPath;
+
+	@ElementCollection
+	private List<Preco> precos = new ArrayList<>();
+	
+	@DateTimeFormat
+	private Calendar dataLancamento;
 
 	public String getTitulo() {
 		return titulo;

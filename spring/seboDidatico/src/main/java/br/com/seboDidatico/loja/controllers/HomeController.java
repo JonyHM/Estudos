@@ -18,10 +18,10 @@ public class HomeController {
 	private ProdutoDAO produtoDAO;
 	
 	@RequestMapping("/")
-	@Cacheable("produtosHome")
+	@Cacheable(value="produtosHome")
 	public ModelAndView index() {		
-		ModelAndView modelAndView = new ModelAndView("home");
 		List<Produto> produtos = produtoDAO.listar();
+		ModelAndView modelAndView = new ModelAndView("home");
 		modelAndView.addObject("produtos", produtos);
 		
 		return modelAndView;

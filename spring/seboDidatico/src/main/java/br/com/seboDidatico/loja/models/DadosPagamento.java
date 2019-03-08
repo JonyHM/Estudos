@@ -10,7 +10,8 @@ public class DadosPagamento {
 		this.value = value;
 	}
 	
-	public DadosPagamento(){}
+	public DadosPagamento(){
+	}
 	
 	public BigDecimal getValue() {
 		return value;

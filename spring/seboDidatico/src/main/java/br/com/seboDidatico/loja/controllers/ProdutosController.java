@@ -38,9 +38,9 @@ public class ProdutosController {
 		binder.addValidators(new ProdutoValidation());
 	}
 	
-	@RequestMapping("form")
+	@RequestMapping("/form")
 	public ModelAndView form(Produto produto) {		
-		ModelAndView modelAndView = new ModelAndView("/produtos/form");
+		ModelAndView modelAndView = new ModelAndView("produtos/form");
 		modelAndView.addObject("tipos", TipoPreco.values());
 		
 		return modelAndView;
@@ -59,13 +59,13 @@ public class ProdutosController {
 		produtoDAO.gravar(produto);
 		redirect.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 		
-		return new ModelAndView("redirect:produtos");
+		return new ModelAndView("redirect:/produtos");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listar() {		
 		List<Produto> produtos = produtoDAO.listar();
-		ModelAndView modelAndView = new ModelAndView("/produtos/lista");
+		ModelAndView modelAndView = new ModelAndView("produtos/lista");
 		modelAndView.addObject("produtos", produtos);
 		
 		return modelAndView;

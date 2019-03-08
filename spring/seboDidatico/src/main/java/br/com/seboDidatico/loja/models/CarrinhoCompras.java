@@ -17,7 +17,11 @@ public class CarrinhoCompras implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
+	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<>();
+
+	public Collection<CarrinhoItem> getItens() {
+		return itens.keySet();
+	}
 	
 	public void add(CarrinhoItem item) {
 		itens.put(item, getQuantidade(item) + 1);
@@ -33,10 +37,6 @@ public class CarrinhoCompras implements Serializable{
 	public int getQuantidade() {
 	    return itens.values().stream()
 	        .reduce(0, (proximo, acumulador) -> proximo + acumulador);
-	}
-	
-	public Collection<CarrinhoItem> getItens() {
-		return itens.keySet();
 	}
 	
 	public BigDecimal getTotal(CarrinhoItem item) {
@@ -56,6 +56,10 @@ public class CarrinhoCompras implements Serializable{
 		Produto produto = new Produto();
 		
 		produto.setId(produtoId);
-		itens.remove(new CarrinhoItem(produto, tipoPreco));
+		this.itens.remove(new CarrinhoItem(produto, tipoPreco));
+	}
+	
+	public void limpa() {
+		this.itens.clear();
 	}
 }

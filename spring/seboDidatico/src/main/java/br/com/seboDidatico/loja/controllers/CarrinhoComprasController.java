@@ -14,7 +14,6 @@ import br.com.seboDidatico.loja.models.CarrinhoItem;
 import br.com.seboDidatico.loja.models.Produto;
 import br.com.seboDidatico.loja.models.TipoPreco;
 
-
 @Controller
 @RequestMapping("/carrinho")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
@@ -27,28 +26,26 @@ public class CarrinhoComprasController {
 	private CarrinhoCompras carrinho;
 	
 	@RequestMapping("/add")
-	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {
-		
+	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {		
 		ModelAndView modelAndView = new ModelAndView("redirect:/carrinho");
-		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
-		
+		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);		
 		carrinho.add(carrinhoItem);
 		
 		return modelAndView;
-	}
-
-	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
-
-		Produto produto = produtoDAO.find(produtoId);
-		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);
-		
-		return carrinhoItem;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView itens() {
 		return new ModelAndView("/carrinho/itens");
 	}
+
+	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
+		Produto produto = this.produtoDAO.find(produtoId);
+		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);
+		
+		return carrinhoItem;
+	}
+	
 	
 	@RequestMapping("/remover")
 	public ModelAndView remover(Integer produtoId, TipoPreco tipoPreco){

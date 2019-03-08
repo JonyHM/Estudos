@@ -13,8 +13,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Compra e venda de livros usados e novos, jogos e diversos
-	itens - Sebo Didático</title>
+<title>Compra e venda de livros usados e novos, jogos e diversos itens - Sebo Didático</title>
 </head>
 
 <body>
@@ -31,21 +30,18 @@
 				<a class="navbar-brand" href="${s:mvcUrl('HC#index').build()}">
 					Sebo Didático </a>
 			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
+			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="${s:mvcUrl('PC#listar').build()}"> Lista de
-							Produtos </a></li>
-					<li><a href="${s:mvcUrl('PC#form').build()}"> Cadastro de
-							Produtos </a></li>
+					<li class="nav-item"><a
+						href="${s:mvcUrl('PC#listar').build()}"> Lista de Produtos </a></li>
+					<li class="nav-item"><a href="${s:mvcUrl('PC#form').build()}">
+							Cadastro de Produtos </a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item"><a href="#"> <security:authentication
 								property="principal" var="usuario" /> Usuário:
 							${usuario.username }
 					</a></li>
-					<li class="nav-item"><a href="<c:url value="/logout" />">Sair</a>
-					</li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -62,6 +58,7 @@
 			<tr>
 				<th>Título</th>
 				<th>Descrição</th>
+				<th>Preços</th>
 				<th>Páginas</th>
 			</tr>
 			<c:forEach items="${produtos}" var="produto">
@@ -69,6 +66,7 @@
 					<td><a
 						href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build()}">${produto.titulo}</a></td>
 					<td>${produto.descricao}</td>
+					<td>${produto.precos}</td>
 					<td>${produto.paginas}</td>
 				</tr>
 			</c:forEach>
