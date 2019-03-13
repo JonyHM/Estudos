@@ -1,10 +1,9 @@
 package br.com.gsw.financas.teste;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import br.com.gsw.financas.modelo.Conta;
+import br.com.gsw.financas.util.JPAUtil;
 
 public class TesteConta {
 
@@ -16,14 +15,13 @@ public class TesteConta {
 		conta.setAgencia("123");
 		conta.setNumero("456");
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("financas");
-		EntityManager em = emf.createEntityManager();
 		
+		EntityManager em = new JPAUtil().getEntityManager();
+				
 		em.getTransaction().begin();
 		em.persist(conta);
 		em.getTransaction().commit();
 		
 		em.close();
-		emf.close();
 	}
 }
