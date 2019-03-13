@@ -10,6 +10,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Aqui são listadas todas as entidades -->
 		<class>br.com.gsw.financas.modelo.Conta</class>
+		<class>br.com.gsw.financas.modelo.Movimentacao</class>
 		<properties>
 			<!-- Propriedades JDBC -->
 			<property name="javax.persistence.jdbc.driver"
