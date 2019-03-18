@@ -95,7 +95,7 @@ public class CriadorDeProdutos {
 				violao.setDescricao("Excelente violão");
 				violao.setPreco(500.0);
 				violao.adicionarCategorias(musica);
-				violao.setLinkDaFoto("http://www.marillac.g12.br/imgs/atividade%20complementar/violao.jpg");
+				violao.setLinkDaFoto("https://http2.mlstatic.com/violo-eletrico-giannini-flat-nf14-bk-nylon-corpo-fino-D_NQ_NP_920983-MLB25742427014_072017-F.jpg");
 				
 				em.persist(violao);
 				

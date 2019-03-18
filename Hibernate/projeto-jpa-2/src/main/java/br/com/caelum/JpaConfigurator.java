@@ -1,31 +1,40 @@
 package br.com.caelum;
 
+import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import org.hibernate.stat.Statistics;
+
 @Configuration
 @EnableTransactionManagement
 public class JpaConfigurator {
 
-	@Bean
-	public DataSource getDataSource() {
-	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost/projeto_jpa");
-	    dataSource.setUsername("root");
+	@Bean(destroyMethod = "close")
+	public DataSource getDataSource() throws PropertyVetoException {
+	    ComboPooledDataSource dataSource = new ComboPooledDataSource();
+	    dataSource.setDriverClass("com.mysql.jdbc.Driver");
+	    dataSource.setUser("root");
 	    dataSource.setPassword("");
-
+	    dataSource.setJdbcUrl("jdbc:mysql://localhost/projeto_jpa");
+	    
+	    dataSource.setMinPoolSize(5);
+	    dataSource.setNumHelperThreads(5);
+	    
+	    dataSource.setIdleConnectionTestPeriod(1);
+	    
 	    return dataSource;
 	}
 
@@ -44,9 +53,18 @@ public class JpaConfigurator {
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		props.setProperty("hibernate.show_sql", "true");
 		props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		props.setProperty("hibernate.cache.use_second_level_cache", "true");
+		props.setProperty("hibernate.cache.use_query_cache", "true");
+		props.setProperty("hibernate.generate_statistics", "true");
+		props.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
 
 		entityManagerFactory.setJpaProperties(props);
 		return entityManagerFactory;
+	}
+	
+	@Bean
+	public Statistics statistics(EntityManagerFactory emf) { 
+	    return emf.unwrap(SessionFactory.class).getStatistics();
 	}
 
 	@Bean
