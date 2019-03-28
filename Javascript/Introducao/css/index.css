@@ -79,10 +79,9 @@ label{
 .campo{
 	margin: 0;
 	padding-bottom: 1em;
-	width: 100%;
+	width: 95.5%;
 	border: 1px solid #ccc;
-	padding: .7em;
-	width: 100%;
+	padding: .7em;	
 }
 
 .campo-medio{
@@ -139,5 +138,28 @@ button[disabled=disabled], button:disabled {
 }
 
 #erros{
-	color: red;
+	color: #F00;
+}
+
+.fadeOut{
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.filtrar{
+	width: 810px;
+	height: 35px;
+    margin-bottom: 10px;
+}
+
+.invisivel{
+	display: none;
+}
+
+#erro-ajax{
+	color:#F00;
+}
+
+#buscar-paciente{
+	display: inline-block;
 }
