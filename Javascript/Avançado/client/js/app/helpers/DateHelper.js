@@ -5,9 +5,13 @@ class DateHelper{
     }
 
     static textToDate(text){
-        if(!/\d{4}-\d{2}-\d{2}/.test(text)) throw new Error("Deve estar no formato YYYY-MM-DD");
-        return new Date(...text.split('-')
-            .map((item, indice) => item - indice % 2));
+        if(/\d{4}-\d{2}-\d{2}/.test(text)) {
+            
+            return new Date(...text.split('-')
+                .map((item, indice) => item - indice % 2));
+        }else{
+            throw new Error("Deve estar no formato aaaa-mm-dd");
+        }
     }
 
     static dateToText(date){
