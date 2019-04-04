@@ -1,32 +1,51 @@
 class NegociacaoController{
     constructor() {
         let $ = document.querySelector.bind(document);
+
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
         this._form = $('.form');
-        this._listaNegociacoes = new ListaNegociacoes(model => 
-            this._negociacoesView.update(model));
         
-        this._negociacoesView = new NegociacoesView($('#negociacoesView'));
-        this._negociacoesView.update(this._listaNegociacoes);
-
-        this._mensagem = new Mensagem();
-        this._mensagemView = new MensagemView($('#mensagemView'));
-        this._mensagemView.update(this._mensagem);
+        this._listaNegociacoes = new Bind(
+            new ListaNegociacoes(), 
+            new NegociacoesView($('#negociacoesView')), 
+            'adiciona', 'esvazia'
+        );
+        
+        this._mensagem = new Bind(
+            new Mensagem(), 
+            new MensagemView($('#mensagemView')),
+            'texto'
+        );
     }
 
-    adiciona(event){        
+    adiciona(event){    
         event.preventDefault();   
-
-        this._listaNegociacoes.adiciona(this._criaNegociacao());
-        
-        this._mensagem.texto = 'Negociação adicionada com sucesso!';
-        this._mensagemView.update(this._mensagem);
-        
+        this._listaNegociacoes.adiciona(this._criaNegociacao());        
+        this._mensagem.texto = 'Negociação adicionada com sucesso!';        
         this._limpa();
     }
     
+    apaga(){
+        this._listaNegociacoes.esvazia();
+        this._mensagem.texto = 'Negociações excluídas com sucesso!';
+    }
+
+    importaNegociacoes(){
+
+        let service = new NegociacaoService();
+        service.obterNecociacoesDaSemana((erro, negociacoes) => {
+            if(erro){
+                this._mensagem.texto = erro;
+                return;
+            }
+            
+            negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+            this._mensagem.texto = 'Nregociações imporetadas com sucesso';
+        });
+    }
+
     _limpa(){
         this._form.reset();
         this._inputData.focus();
@@ -38,13 +57,5 @@ class NegociacaoController{
             this._inputQuantidade.value,
             this._inputValor.value
         );
-    }
-
-    apaga(){
-        this._listaNegociacoes.esvazia();
-        this._negociacoesView.update(this._listaNegociacoes);
-
-        this._mensagem.texto = 'Negociações excluídas com sucesso!';
-        this._mensagemView.update(this._mensagem);
     }
 }
