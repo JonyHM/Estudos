@@ -5,7 +5,12 @@
     <title>Type Counter - Game</title>
     <link rel="stylesheet" href="css/libs/materialize.min.css"> 
     <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <!--Selectize: Lista de seleção de nomes-->
+    <link rel="stylesheet" type="text/css" href="css/libs/selectize.default.css">
+    <!--Tooltipster: Notificações-->
+    <link rel="stylesheet" type="text/css" href="css/libs/tooltipster.bundle.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+
 </head>
 <body>
 
@@ -45,6 +50,16 @@
                 <i class="material-icons">repeat_one</i>
             </a>
             <input type="number" min="0" id="frase-id">
+
+            <div class="select-usuarios">
+                <select id="usuarios">
+                    <option value="Jonathas">Jonathas</option>
+                </select>
+            </div>
+
+            <a id="botao-sync" class="tooltip btn-floating btn-large waves-effect waves-light yellow" title="Dados sincronizados com sucesso!">
+                <i class="material-icons">swap_vert</i>
+            </a>
         </div>
 
         <ul class="center">
@@ -63,15 +78,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="display: none">Usuario</td>
-                        <td style="display: none">99</td>
-                        <td style="display: none">
-                            <a style="display: none" href="#" class="botao-remover">
-                                <i class="small material-icons">delete</i>
-                            </a>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </section>
@@ -81,5 +88,7 @@
     <script src="js/main.js"></script>
     <script src="js/placar.js"></script>
     <script src="js/frase.js"></script>
+    <script src="js/selectize.js"></script>
+    <script src="js/tooltipster.bundle.min.js"></script>
 </body>
 </html>
