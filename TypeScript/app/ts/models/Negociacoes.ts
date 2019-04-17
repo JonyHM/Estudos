@@ -1,7 +1,8 @@
+import { Equals } from './Equals';
 import { Negociacao } from './Negociacao';
 
 //encapsula um array de negociações
-export class Negociacoes{
+export class Negociacoes implements Equals<Negociacoes> {
 
     private _negociacoes: Negociacao[] = [];
 
@@ -11,5 +12,15 @@ export class Negociacoes{
 
     paraArray(): Negociacao[] {
         return ([] as Negociacao[]).concat(this._negociacoes);
+    }
+
+    paraTexto(): void {
+
+        console.log('-- paraTexto --');
+        console.log(JSON.stringify(this._negociacoes));
+    }
+
+    ehIgual(negociacoes: Negociacoes){
+        return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.paraArray())
     }
 }
