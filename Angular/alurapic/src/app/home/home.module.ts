@@ -1,3 +1,4 @@
+import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,8 @@ import { SignUpComponent } from './signup/signup.component';
 @NgModule({
     declarations: [
       SignInComponent,
-      SignUpComponent
+      SignUpComponent,
+      HomeComponent
     ],
     imports: [
       CommonModule,
