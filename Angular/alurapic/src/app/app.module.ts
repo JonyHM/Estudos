@@ -15,12 +15,11 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     PhotosModule,
     ErrorsModule,
-    HomeModule,
     CoreModule,
-    CommonModule
+    CommonModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

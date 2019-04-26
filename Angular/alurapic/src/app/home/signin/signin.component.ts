@@ -1,8 +1,9 @@
-import { PlatformDetectorService } from './../../core/platform-detector/platform-detector.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
+
+import { PlatformDetectorService } from './../../core/platform-detector/platform-detector.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   templateUrl: './signin.component.html'
@@ -24,6 +25,8 @@ export class SignInComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.platformDetectorService.isPlatformBrowser() &&
+      this.userNameInput.nativeElement.focus();
   }
 
   login() {
