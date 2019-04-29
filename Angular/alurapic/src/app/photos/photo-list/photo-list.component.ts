@@ -10,21 +10,24 @@ import { Photo } from '../photo/photo';
   styleUrls: ['./photo-list.component.css']
 })
 export class PhotoListComponent implements OnInit {
-  
+
   photos: Photo[] = [];
   filter: string = '';
   hasMore: boolean = true;
   currentPage: number = 1;
   userName: string = '';
-  
-  constructor( 
+
+  constructor(
     private activatedRoute: ActivatedRoute ,
     private photoService: PhotoService,
   ){}
-  
+
   ngOnInit(): void {
-    this.userName = this.activatedRoute.snapshot.params.userName;
-    this.photos = this.activatedRoute.snapshot.data['photos'];
+    // Este Observable escuta as mudanças na rota e atualiza as informações da pag
+    this.activatedRoute.params.subscribe(params => {
+      this.userName = params.userName;
+      this.photos = this.activatedRoute.snapshot.data['photos'];
+    });
   }
 
   load(){

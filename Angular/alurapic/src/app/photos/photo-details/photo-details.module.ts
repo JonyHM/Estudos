@@ -1,15 +1,20 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { ShowIfLoggedModule } from './../../shared/directives/show-if-logged/show-if-logged.module';
 import { PhotoModule } from './../photo/photo.module';
 import { PhotoCommentsComponent } from './photo-comments/photo-comments.component';
 import { PhotoDetailsComponent } from './photo-details.component';
+import { VMessageModule } from './../../shared/components/vmessage/vmessage.module';
+import { PhotoOwnerOnlyDirective } from './photo-owner-only/photo-owner-only.directive';
 
 @NgModule({
   declarations: [
     PhotoDetailsComponent,
-    PhotoCommentsComponent
+    PhotoCommentsComponent,
+    PhotoOwnerOnlyDirective
   ],
   exports: [
     PhotoDetailsComponent,
@@ -18,7 +23,10 @@ import { PhotoDetailsComponent } from './photo-details.component';
   imports: [
     CommonModule,
     PhotoModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    VMessageModule,
+    ShowIfLoggedModule
   ]
 })
 export class PhotoDetailsModule {}
