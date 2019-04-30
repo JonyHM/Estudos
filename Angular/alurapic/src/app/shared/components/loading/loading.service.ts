@@ -1,7 +1,8 @@
-import { LoadingType } from './loading-type';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { startWith } from 'rxjs/operators';
+
+import { LoadingType } from './loading-type';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
