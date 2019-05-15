@@ -1,4 +1,4 @@
-package br.com.gsw.boot.repository;
+package br.com.gsw.boot.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

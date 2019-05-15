@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <a class="btn btn-primary" [routerLink]="['/admin']">Voltar</a>
+  </div>
+  <br>
+  <div>
+    <div class="form-group">
+      <label>Nome do Comprador</label>
+      <div class="form-control">{{regBicicleta.nome}}</div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <div class="form-control">{{regBicicleta.email}}</div>
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <div class="form-control">{{regBicicleta.telefone}}</div>
+    </div>
+    <div class="form-group">
+      <label>Modelo da Bicicleta</label>
+      <div class="form-control">{{regBicicleta.modelo}}</div>
+    </div>
+    <div class="form-group">
+      <label>Numero Serial</label>
+      <div class="form-control">{{regBicicleta.numeroSerial}}</div>
+    </div>
+    <div class="form-group">
+      <label>Valor da Compra</label>
+      <div class="form-control">{{regBicicleta.valorCompra}}</div>
+    </div>
+    <div class="form-group">
+      <label>Data da Compra</label>
+      <div class="form-control">{{regBicicleta.dataCompra | date: 'dd/MM/yyyy'}}</div>
+    </div>
+  </div>
+</div>

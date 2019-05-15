@@ -1,14 +1,13 @@
 package br.com.gsw.boot.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gsw.boot.models.Bicicleta;
-import br.com.gsw.boot.repository.BicicletaRepository;
+import br.com.gsw.boot.repositories.BicicletaRepository;
 
 @Service
 public class BicicletaServiceImpl implements BicicletaService {
@@ -22,8 +21,8 @@ public class BicicletaServiceImpl implements BicicletaService {
 	}
 
 	@Override
-	public Optional<Bicicleta> getBicicleta(Long id) {
-		return bicicletaRepository.findById(id);
+	public Bicicleta getBicicleta(Long id) {
+		return bicicletaRepository.findById(id).get();
 	}
 
 	@Override

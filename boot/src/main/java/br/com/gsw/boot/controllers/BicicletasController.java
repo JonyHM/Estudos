@@ -2,10 +2,13 @@ package br.com.gsw.boot.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,28 +20,34 @@ import br.com.gsw.boot.services.BicicletaServiceImpl;
 @RestController
 @RequestMapping("/api/v1/bicicletas")
 public class BicicletasController {
-	
+
+	@Autowired
 	BicicletaServiceImpl biciclietaService;
-	
-	public BicicletasController() {
-		biciclietaService = new BicicletaServiceImpl();
-	}
 
 	@GetMapping
-	public List<Bicicleta> lista() {
-		return biciclietaService.getTodasBicicletas();
+	public List<Bicicleta> listar() {
+		List<Bicicleta> bikes = biciclietaService.getTodasBicicletas();
+		return bikes;
 	}
 	
 	@PostMapping
-	@ResponseStatus(HttpStatus.OK)
-	public void create(@RequestBody Bicicleta bicicleta) {
-		
+	@ResponseStatus(HttpStatus.CREATED)
+	public void create(@RequestBody Bicicleta bicicleta){
+		biciclietaService.criarBicicleta(bicicleta);
 	}
 	
-	@GetMapping("/{id}") // Funciona em conjunto com o @Input do front, onde podemos passar um valor na url e usá-lo
-	public Bicicleta get(@PathVariable("id") long id) {
-		return new Bicicleta();
+	@PutMapping
+	@ResponseStatus(HttpStatus.OK)
+	public void update(@RequestBody Bicicleta bicicleta) {
+		biciclietaService.editaBicicleta(bicicleta);
 	}
+	
+	@GetMapping("/{id}") // Funciona da mesma forma que o @Input do front, onde podemos passar um valor na url e usá-lo
+	public ResponseEntity<Bicicleta> get(@PathVariable long id) {
+		Bicicleta bike = biciclietaService.getBicicleta(id);
+		
+		return ResponseEntity.ok().body(bike);
+	}	
 	
 	
 }
